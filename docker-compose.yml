@@ -14,13 +14,15 @@ services:
 
   app:
     build: .
+    command: wait-for mysql:3306 -t 40 -- npm start
     environment:
       MYSQL_HOST: mysql
       MYSQL_USER: root
       MYSQL_PASSWORD: password
       MYSQL_DB: nodedb
     volumes:
-      - ./app.js:/usr/src/app/app.js
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
     depends_on:
       - mysql
     networks:
