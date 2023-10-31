@@ -20,7 +20,7 @@ services:
       MYSQL_PASSWORD: password
       MYSQL_DB: nodedb
     volumes:
-      - .:/usr/src/app
+      - ./app.js:/usr/src/app/app.js
     depends_on:
       - mysql
     networks:
