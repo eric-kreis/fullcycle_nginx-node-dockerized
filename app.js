@@ -16,7 +16,7 @@ const connection = mysql.createConnection({
   host: MYSQL_HOST,
   user: MYSQL_USER,
   password: MYSQL_PASSWORD,
-  database: MYSQL_DB
+  database: MYSQL_DB,
 });
 
 connection.connect();
@@ -24,7 +24,7 @@ connection.connect();
 app.get('/', async (req, res) => {
   const newName = faker.person.fullName();
 
-  connection.query(`INSERT INTO people(name) values('${newName}')`, (err) => {
+  connection.query(`INSERT INTO people(name) values(?)`, newName, (err) => {
     if (err) throw err;
     connection.query('SELECT name FROM people', (err, results) => {
       if (err) throw err;
